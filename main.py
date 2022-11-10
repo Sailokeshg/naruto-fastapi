@@ -6,7 +6,13 @@ from api.ratings import router as ratings_router
 from api.seasons import router as seasons_router
 
 
-app = FastAPI()
+app = FastAPI(title="Naruto-API's",
+              version="0.0.1",
+              contact={
+                  "name": "Sai Lokesh Reddy",
+                  "url": "https://sailokeshg.github.io/myportfolio/",
+                  "email": "sailokeshreddyg@gmail.com",
+              },)
 
 app.include_router(episodes_router, tags=['Episodes'])
 app.include_router(seasons_router, tags=['Seasons'])
