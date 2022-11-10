@@ -21,3 +21,9 @@ async def get_complete_episode_details_by_type(episode_type: EpisodeType, sessio
     if not details_by_type:
         return {'error': 'No episode found for this type'}
     return details_by_type
+
+async def get_complete_episode_details_by_limit_and_offset(limit: int, offset: int, session: Session):
+    details_by_limit_and_offset = session.query(Episode).limit(limit).offset(offset).all()
+    if not details_by_limit_and_offset:
+        return {'error': 'No episode found for this limit and offset'}
+    return details_by_limit_and_offset

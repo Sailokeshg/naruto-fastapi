@@ -9,13 +9,15 @@ from services.seasons import get_complete_episode_details_by_season_number_and_e
 
 router = APIRouter(prefix='/seasons')
 
-@router.get('/{season_number}')
-async def get_episode_details(season_number: int, session: Session = Depends(get_postgres_db)):
+@router.get('/{season_number}',
+            description="This endpoint returns all the episodes list of a season.")
+async def get_episode_details_by_season_number(season_number: int, session: Session = Depends(get_postgres_db)):
     episode_details = await get_complete_episode_details_by_season_id(session, season_number)
     return episode_details
 
-@router.get('/{season_number}/{episode_number}')
-async def get_episode_details(season_number: int, episode_number: int, session: Session = Depends(get_postgres_db)):
+@router.get('/{season_number}/{episode_number}',
+            description="This endpoint returns the details of a particular episode.")
+async def get_episode_details_by_its_season_specific_episode_number(season_number: int, episode_number: int, session: Session = Depends(get_postgres_db)):
     episode_details = await get_complete_episode_details_by_season_number_and_episode_number(session, season_number, episode_number)
 
     return episode_details
