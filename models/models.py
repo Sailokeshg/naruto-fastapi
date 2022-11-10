@@ -21,3 +21,10 @@ class Episode(Base):
     votes = Column(Integer)
     description = Column(String)
     type = Column(String)
+
+class Quotes(Base):
+    __tablename__ = 'quotes'
+
+    quote_id = Column(Integer, primary_key=True)
+    character = Column(String)
+    quote = Column(String)
