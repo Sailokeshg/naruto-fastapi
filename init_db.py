@@ -5,13 +5,21 @@ import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+
 dotenv.load_dotenv()
 
 POSTGRES_DATABASE_URL = f'postgresql+psycopg2://{os.getenv("USER")}:{os.getenv("PASSWORD")}@{os.getenv("HOST")}/{os.getenv("NAME")}'
 
+YUGABYTE_URL = f'postgresql+psycopg2://{os.getenv("DB_USER")}:{os.getenv("PASSWORD")}@{os.getenv("HOST")}:5433/yugabyte?&sslmode=verify-full&sslrootcert=root.crt'
+
 postgres_engine = sqlalchemy.create_engine(POSTGRES_DATABASE_URL)
 PostgresSession = sessionmaker(autocommit=False, autoflush=False, bind=postgres_engine)
 PostgresSession.configure(bind=postgres_engine)
+
+
+yugabyte_engine = sqlalchemy.create_engine(YUGABYTE_URL)
+YugabyteSession = sessionmaker(autocommit=False, autoflush=False, bind=yugabyte_engine)
+YugabyteSession.configure(bind=yugabyte_engine)
 
 Base = declarative_base()
 
@@ -23,6 +31,13 @@ def get_postgres_db():
     finally:
         db.close()
 
+def get_yugabyte_db():
+    db = None
+    try:
+        db = YugabyteSession()
+        yield db
+    finally:
+        db.close()
 
 def create_session(schema, url):
     engine = sqlalchemy.create_engine(url)
