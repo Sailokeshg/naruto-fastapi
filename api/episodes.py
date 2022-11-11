@@ -13,16 +13,19 @@ router = APIRouter(prefix='/episodes')
 
 @router.get('/all')
 async def get_all_episode_details(session: Session = Depends(get_postgres_db)):
+    '''Get all episode details'''
     episode_details = await get_complete_episode_details(session)
     return episode_details
 
 @router.get('/{episode_number}')
 async def get_episode_details(episode_number: int, session: Session = Depends(get_postgres_db)):
+    '''Get episode details by episode number'''
     episode_details = await get_complete_episode_details_by_id(session, episode_number)
     return episode_details
 
 @router.get('/types/{episode_type}')
 async def get_episode_details_by_type(episode_type: EpisodeType, session: Session = Depends(get_postgres_db)):
+    '''Get all episodes of a particular type'''
     episode_details = await get_complete_episode_details_by_type(episode_type, session)
     return episode_details
 
