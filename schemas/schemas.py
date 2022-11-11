@@ -1,3 +1,4 @@
+'''This module contains custom schemas used in the project.'''
 import enum
 
 
