@@ -44,13 +44,3 @@ Go to any of the following addresses in the browser
 
   -  http://127.0.0.1:8000/docs
   - http://127.0.0.1:8000/redoc
-
-### Pre-Commit hooks
-
- Make sure you initialize the git hooks script before making your first commit to the repository.
-
- ```shell
- pre-commit install
- ```
- Kindly note that this is a one time process.
-
