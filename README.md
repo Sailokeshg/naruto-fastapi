@@ -45,4 +45,4 @@ Go to any of the following addresses in the browser
   -  http://127.0.0.1:8000/docs
   -  http://127.0.0.1:8000/redoc
 
-This app is deployed on Deta and api's can be accessed at https://q5rwi9.deta.dev/docs
+This app is deployed on Deta and api's can be accessed at https://q5rwi9.deta.dev/docs.
