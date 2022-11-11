@@ -80,3 +80,7 @@ MANIFEST
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+
+#deta
+.deta

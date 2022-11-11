@@ -1,9 +1,10 @@
 autopep8 == 1.6.0
 fastapi == 0.78.0
 fastapi-utils == 0.2.1
+postgres == 4.0
 pre-commit == 2.19.0
 pre-commit-hooks == 4.3.0
 python-dotenv == 0.20.0
 python-multipart == 0.0.5
 sqlalchemy == 1.4.39
-uvicorn == 0.11.1
+uvicorn == 0.18.3
