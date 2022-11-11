@@ -1,10 +1,10 @@
+"""This module contains apis related to ratings."""
 from fastapi import APIRouter
 from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from init_db import get_postgres_db
 from services.ratings import get_episode_details_greater_than_rating
-
 
 router = APIRouter(prefix='/ratings')
 

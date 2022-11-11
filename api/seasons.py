@@ -1,3 +1,4 @@
+"""This module contains apis related to seasons."""
 from fastapi import APIRouter
 from fastapi import Depends
 from sqlalchemy.orm import Session
@@ -5,7 +6,6 @@ from sqlalchemy.orm import Session
 from init_db import get_postgres_db
 from services.seasons import get_complete_episode_details_by_season_id
 from services.seasons import get_complete_episode_details_by_season_number_and_episode_number
-
 
 router = APIRouter(prefix='/seasons')
 

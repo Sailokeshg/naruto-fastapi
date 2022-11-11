@@ -1,3 +1,4 @@
+"""This module contains apis related to quotes."""
 from fastapi import APIRouter
 from fastapi import Depends
 from sqlalchemy.orm import Session
@@ -6,8 +7,6 @@ from init_db import get_postgres_db
 from schemas.schemas import Characters
 from services.quotes import get_all_quotes_details
 from services.quotes import get_available_character_names_for_quotes
-from services.quotes import get_quote_details_by_id
-from services.quotes import get_quote_details_by_limit_and_offset_values
 from services.quotes import get_quote_details_of_a_character_name
 
 router = APIRouter(prefix='/quotes')
