@@ -32,8 +32,7 @@ async def get_episode_details_by_type(
     return episode_details
 
 @router.get('/{limit}/{offset}')
-async def get_episode_details_by_limit_and_offset(
-        limit: int, offset: int, session: Session = Depends(get_postgres_db)):
+async def get_episode_details_by_limit_and_offset(limit: int, offset: int, session: Session = Depends(get_postgres_db)):
     '''Get episode details by limit and offset.'''
     episode_details = await get_complete_episode_details_by_limit_and_offset(limit, offset, session)
     return episode_details

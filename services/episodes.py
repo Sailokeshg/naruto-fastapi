@@ -22,8 +22,7 @@ async def get_complete_episode_details_by_id(session: Session, episode_number: i
 
 async def get_complete_episode_details_by_type(episode_type: EpisodeType, session: Session):
     '''Get all episode details by its type from database'''
-    details_by_type = session.query(Episode).filter(
-        Episode.type == episode_type).order_by(
+    details_by_type = session.query(Episode).filter(Episode.type == episode_type).order_by(
         Episode.season, Episode.episode_number_in_season).all()
     if not details_by_type:
         return {'error': 'No episode found for this type'}

@@ -27,8 +27,7 @@ async def get_characters_details(session: Session = Depends(get_postgres_db)) ->
 
 @router.get('/character/{chatacter_name}',
             description="This endpoint returns the details of a particular quote of the character.")
-async def get_quote_details_by_character_name(
-        chatacter_name: Characters, session: Session = Depends(get_postgres_db)):
+async def get_quote_details_by_character_name(chatacter_name: Characters, session: Session = Depends(get_postgres_db)):
     '''Get all the quotes said by a particular character'''
     quote_details = await get_quote_details_of_a_character_name(chatacter_name, session)
     return quote_details
