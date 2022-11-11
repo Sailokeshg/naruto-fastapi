@@ -30,9 +30,9 @@ def create_session(schema, url):
     '''Create a session for a particular schema'''
     engine = sqlalchemy.create_engine(url)
     engine.dialect.description_encoding = None
-    Session = sessionmaker()
-    Session.configure(bind=engine)
-    session = Session()
+    session_maker = sessionmaker()
+    session_maker.configure(bind=engine)
+    session = session_maker()
     query = "SET search_path=" + schema
     session.execute(query)
     return session
