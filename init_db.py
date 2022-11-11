@@ -1,3 +1,4 @@
+"""This module contains code related to databse connection"""
 import os
 
 import dotenv
@@ -7,30 +8,31 @@ from sqlalchemy.orm import sessionmaker
 
 dotenv.load_dotenv()
 
-POSTGRES_DATABASE_URL = f'postgresql+psycopg2://{os.getenv("DB_USER")}:{os.getenv("PASSWORD")}@{os.getenv("HOST")}/{os.getenv("NAME")}'
+POSTGRES_URL = f'postgresql+psycopg2://{os.getenv("DB_USER")}:{os.getenv("PASSWORD")}@{os.getenv("HOST")}/{os.getenv("NAME")}'
 
-postgres_engine = sqlalchemy.create_engine(POSTGRES_DATABASE_URL)
+postgres_engine = sqlalchemy.create_engine(POSTGRES_URL)
 PostgresSession = sessionmaker(autocommit=False, autoflush=False, bind=postgres_engine)
 PostgresSession.configure(bind=postgres_engine)
 
 Base = declarative_base()
 
 def get_postgres_db():
-    db = None
+    '''Get a session for the postgres database'''
+    database = None
     try:
-        db = PostgresSession()
-        yield db
+        database = PostgresSession()
+        yield database
     finally:
-        db.close()
+        database.close()
 
 
 def create_session(schema, url):
+    '''Create a session for a particular schema'''
     engine = sqlalchemy.create_engine(url)
     engine.dialect.description_encoding = None
-    Session = sessionmaker()
-    Session.configure(bind=engine)
-    session = Session()
-    metadata = sqlalchemy.MetaData(bind=session.bind)
+    session_maker = sessionmaker()
+    session_maker.configure(bind=engine)
+    session = session_maker()
     query = "SET search_path=" + schema
     session.execute(query)
     return session

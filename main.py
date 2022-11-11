@@ -1,3 +1,4 @@
+"""This module contains application's core object"""
 from fastapi import FastAPI
 
 from api.episodes import router as episodes_router
@@ -22,4 +23,5 @@ app.include_router(quotes_router, tags=['Quotes'])
 
 @app.get('/')
 async def root():
+    '''Denotes root of the application'''
     return {'status': 'OK'}
