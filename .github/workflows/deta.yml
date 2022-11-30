@@ -1,0 +1,24 @@
+name: Deploy to Deta
+on:
+  push:
+    branches:
+      - deployment-on-deta
+
+# This will make sure that only one workflow runs at a time for a branch that triggered the workflow.
+concurrency:
+  group: ${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2 #Be sure you check-out the repo first. Deta CLI needs access to the files
+        with:
+          deta-access-token: ${{ secrets.DETA_TOKEN }} #Deta access token https://docs.deta.sh/docs/cli/auth
+          deta-name: 'naruto-fastapi' #Deta Micro name https://docs.deta.sh/docs/cli/commands/#deta-clone
+      - name: Update Env
+        run: deta update -e .env
+      - name: Deploy
+        run: deta deploy
