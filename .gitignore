@@ -9,7 +9,7 @@
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
+*/yugabyte.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
