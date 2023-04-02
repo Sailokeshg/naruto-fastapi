@@ -2,7 +2,7 @@ name: Resume Yugabyte Cluster
 
 on:
   schedule:
-    - cron: '0 0 */14 * *' # Run at midnight every 15 days
+    - cron: '* * * * *' # Run at midnight every 15 days
   workflow_dispatch:
 
 jobs:
